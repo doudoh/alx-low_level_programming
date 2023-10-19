@@ -1,33 +1,36 @@
-#include <stdio.h>
 #include "lists.h"
 
-int main(void) {
-  list_t *head;
-  list_t *new;
-  list_t hello = {"World", 5, NULL};
-  size_t n;
 
-  head = &hello;
-  new = malloc(sizeof(list_t));
-  if (new == NULL) {
-    printf("Error\n");
-    return 1;
-  }
-
-  new->str = strdup("Hello");
-  new->len = 5;
-  new->next = head;
-  head = new;
-
-  // Print the list
-  n = print_list(head);
-
-  // Print the number of elements in the list
-  printf("-> %lu elements\n", n);
-
-  // Free the allocated memory
-  free(new->str);
-  free(new);
-
-  return 0;
+/**
+* _strlen - returns the length of a string
+* @s: string whose length of check
+*
+* Return: integer length of string 
+*/
+int _strlrn(char *s)
+{
+	int i = 0;
+	if (!s)
+		return (0);
+	while (*s++)
+		i++;
+	return (i);
+}
+/**
+* print_list - print a linked lists
+* @h: pointer of the first node
+*
+* Return: size of list
+*/
+size_t print_list(const list_t *h)
+{
+	size_t i = 0;
+  
+       	while (h)
+	{
+		printf("[%d] %s\n", _strlen(h->str),  h->str ?  h->str : "(nil)");
+		h = h->next;
+		i++;
+	}
+	return (i);
 }
